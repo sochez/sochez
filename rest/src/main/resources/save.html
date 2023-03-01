@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>Meeting calendar</title>
+	</head>
+	<body>
+		<form action="/save" method="post">
+			<fieldset>
+				<legend>Customer Information</legend>
+				<label>User name</label><input type="text" name="userName" placeholder="User name"><br /><br />
+				<label>Topic</label><input type="text" name="topic" placeholder="Topic"><br /><br />
+				<label>Date</label><input type="text" name="date" placeholder="Date"><br /><br />
+				<label>Begin time</label><input type="text" name="beginTime" placeholder="Begin time"><br /><br />
+				<label>End time</label><input type="text" name="endTime" placeholder="End time"><br /><br />
+				<button type="submit">Submit</button>
+			</fieldset>
+		</form>
+		<br />
+		<button type="button" onclick="window.location='/bookings'">Back to bookings page</button>
+		<button type="button" onclick="; window.location='/bookings'">Save booking</button>
+	</body>
+</html>
