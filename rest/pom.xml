@@ -39,6 +39,13 @@
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
 		</dependency>
+		<!--
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-spring-boot-starter</artifactId>
+			<version>23.3.6</version>
+		</dependency>
+		-->
 	</dependencies>
 	<build>
 		<plugins>

@@ -32,8 +32,9 @@ public class Booking {
 	@Column
 	private Time endTime;
 
-	public Booking(long id, String userName, String topic, Date date, Time beginTime, Time endTime) {
-		this.id = id;
+	public Booking() {}
+	
+	public Booking(String userName, String topic, Date date, Time beginTime, Time endTime) {
 		this.userName = userName;
 		this.topic = topic;
 		this.date = date;

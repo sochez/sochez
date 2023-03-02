@@ -24,28 +24,35 @@ public class ApiControllers {
 	@Autowired
 	private BookingRepo bookingRepo;
 
-	@GetMapping(value = "/")
-	public String getPage() {
-		return Views.getOpeningPage();
-	}
+//	@GetMapping(value = "/")
+//	public String getPage() {
+//		return Views.getOpeningPage();
+//	}
 
-	@GetMapping(value = "/bookings")
+	@GetMapping(value = "/")
 	public String getBookings() { // return List<Booking>
 		return Views.getBookingsPage(bookingRepo.findAll());
 	}
 
 	@PostMapping(value = "/save")
 	public String saveBooking(@RequestBody Booking booking) {
-		checkBooking(booking);
-		bookingRepo.save(booking);
-		return "Saved";
+		String error = checkBooking(booking);
+		if (null == error) {
+			bookingRepo.save(booking);
+			return "Saved";
+		} else {
+			return error;
+		}
 	}
 
 	@PutMapping(value = "/update/{id}")
 	public String updateBooking(@PathVariable long id, @RequestBody Booking booking) {
 		Optional<Booking> optionalBooking = bookingRepo.findById(id);
 		if (optionalBooking.isPresent()) {
-			checkBooking(booking);
+			String error = checkBooking(booking);
+			if (null != error) {
+				return error;
+			}
 			Booking updatedBooking = optionalBooking.get();
 			updatedBooking.setUserName(booking.getUserName()).setTopic(booking.getTopic()).setDate(booking.getDate())
 					.setBeginTime(booking.getBeginTime()).setEndTime(booking.getEndTime());
@@ -69,7 +76,7 @@ public class ApiControllers {
 	}
 	
 	@SuppressWarnings("deprecation")
-	@GetMapping(value = "/")
+	@GetMapping(value = "/week")
 	public String getBookingsForThisWeek() {
 		Date today = new Date();
 		int dayOfWeek = today.getDay();
