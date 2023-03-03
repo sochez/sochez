@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,12 +26,15 @@ public class Booking {
 	private String topic;
 	
 	@Column
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date date;
 	
 	@Column
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
 	private Time beginTime;
 	
 	@Column
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
 	private Time endTime;
 
 	public Booking() {}

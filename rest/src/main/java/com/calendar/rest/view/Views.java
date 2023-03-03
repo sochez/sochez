@@ -24,11 +24,11 @@ import freemarker.template.TemplateException;
 
 public class Views {
 
-	public static String getOpeningPage() {
+	public static String getNewBookingPage() {
 		try {
-			return getResourceFileAsString("welcome.html");
+			return getResourceFileAsString("save.html");
 		} catch (IOException e) {
-			return printError("Page not found");
+			return printMessage("Page not found");
 		}
 	}
 
@@ -36,7 +36,7 @@ public class Views {
 		ClassLoader classLoader = ClassLoader.getSystemClassLoader();
 		try (InputStream is = classLoader.getResourceAsStream(fileName)) {
 			if (is == null) {
-				return printError("File not found");
+				return printMessage("File not found");
 			}
 			try (InputStreamReader isr = new InputStreamReader(is); BufferedReader reader = new BufferedReader(isr)) {
 				return reader.lines().collect(Collectors.joining(System.lineSeparator()));
@@ -78,19 +78,19 @@ public class Views {
 			return page.toString();
 		} catch (IOException e) {
 			e.printStackTrace();
-			return printError(e.toString());
+			return printMessage(e.toString());
 		} catch (TemplateException e) {
 			e.printStackTrace();
-			return printError(e.toString());
+			return printMessage(e.toString());
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
-			return printError(e.toString());
+			return printMessage(e.toString());
 		}
 	}
 
-	private static String printError(String error) {
+	public static String printMessage(String message) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(error);
+		sb.append(message);
 		sb.append("\n<br />");
 		sb.append("\n<button type=\"button\" onclick=\"window.location='/'\">Back to main page</button>");
 		return sb.toString();

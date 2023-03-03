@@ -3,18 +3,28 @@
 		<title>Meeting calendar</title>
 	</head>
 	<body>
-		<form action="/save" method="post">
+		<form action="/save" method="post" name="bookingForm">
 			<fieldset>
 				<legend>Customer Information</legend>
-				<label>User name</label><input type="text" name="userName" placeholder="User name"><br /><br />
-				<label>Topic</label><input type="text" name="topic" placeholder="Topic"><br /><br />
-				<label>Date</label><input type="text" name="date" placeholder="Date"><br /><br />
-				<label>Begin time</label><input type="text" name="beginTime" placeholder="Begin time"><br /><br />
-				<label>End time</label><input type="text" name="endTime" placeholder="End time"><br /><br />
+				<label>User name</label><input type="text" name="userName" id="userName" placeholder="User name"><br /><br />
+				<label>Topic</label><input type="text" name="topic" id="topic" placeholder="Topic"><br /><br />
+				<label>Date (YYYY-MM-DD)</label><input type="date" name="date" id="date" placeholder="Date"><br /><br />
+				<label>Begin time (HH:mm)</label><input type="time" name="beginTime" id="beginTime" placeholder="Begin time"><br /><br />
+				<label>End time (HH:mm)</label><input type="time" name="endTime" id="endTime" placeholder="End time"><br /><br />
+				<input value="Submit" type="submit" onclick="alert('save'); submitform()">
 			</fieldset>
 		</form>
+		<script type="text/javascript">
+    		function submitform() {
+    			var formData = JSON.stringify($("#bookingForm").serializeArray());
+    			alert(formData);
+        		var xhr = new XMLHttpRequest();
+        		xhr.open(form.method, form.action, true);
+        		xhr.setRequestHeader('Content-Type', 'application/json');
+        		xhr.send(formData);
+        	}
+        </script>
 		<br />
-		<button type="button" onclick="window.location='/bookings'">Back to bookings page</button>
-		<button type="button" onclick="; window.location='/bookings'">Save booking</button>
+		<button type="button" onclick="window.location='/'">Back to bookings page</button>
 	</body>
 </html>

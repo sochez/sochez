@@ -33,15 +33,20 @@ public class ApiControllers {
 	public String getBookings() { // return List<Booking>
 		return Views.getBookingsPage(bookingRepo.findAll());
 	}
+	
+	@GetMapping(value = "/new")
+	public String newBooking() {
+		return Views.getNewBookingPage();
+	}
 
 	@PostMapping(value = "/save")
 	public String saveBooking(@RequestBody Booking booking) {
 		String error = checkBooking(booking);
 		if (null == error) {
 			bookingRepo.save(booking);
-			return "Saved";
+			return Views.printMessage("Saved");
 		} else {
-			return error;
+			return Views.printMessage(error);
 		}
 	}
 
@@ -57,9 +62,9 @@ public class ApiControllers {
 			updatedBooking.setUserName(booking.getUserName()).setTopic(booking.getTopic()).setDate(booking.getDate())
 					.setBeginTime(booking.getBeginTime()).setEndTime(booking.getEndTime());
 			bookingRepo.save(updatedBooking);
-			return "Updated";
+			return Views.printMessage("Updated");
 		} else {
-			return "Not found";
+			return Views.printMessage("Not found");
 		}
 	}
 
@@ -69,9 +74,9 @@ public class ApiControllers {
 		if (optionalUser.isPresent()) {
 			Booking deletedUser = optionalUser.get();
 			bookingRepo.delete(deletedUser);
-			return "Deleted";
+			return Views.printMessage("Deleted");
 		} else {
-			return "Not found";
+			return Views.printMessage("Not found");
 		}
 	}
 
