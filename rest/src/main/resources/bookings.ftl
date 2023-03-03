@@ -28,6 +28,7 @@
 </#if>
 		</table>
 		<br />
-		<button type="button" onclick="window.location='/'">Back to main page</button>
+		<button type="button" onclick="window.location='/save'">Add booking</button>
+		<button type="button" onclick="window.location='/week'">Bookings of this week</button>
 	</body>
 </html>

@@ -28,6 +28,6 @@
 </#if>
 		</table>
 		<br />
-		<button type="button" onclick="window.location='/'">Back to main page</button>
+		<button type="button" onclick="window.location='/'">Back to all bookings</button>
 	</body>
 </html>
