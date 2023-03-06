@@ -17,12 +17,12 @@
 <#if bookings??>
 	<#list bookings as booking>
 			<tr>
-				<td>booking.getId()</td>
-				<td>booking.getUserName()</td>
-				<td>booking.getTopic()</td>
-				<td>booking.getDate()</td>
-				<td>booking.getBeginTime()</td>
-				<td>booking.getEndTime()</td>
+				<!--td>${booking.getId()}</td-->
+				<td>${booking.getUserName()}</td>
+				<td>${booking.getTopic()}</td>
+				<td>${booking.getDate()}</td>
+				<td>${booking.getBeginTime()}</td>
+				<td>${booking.getEndTime()}</td>
 			</tr>
 	</#list>
 </#if>
